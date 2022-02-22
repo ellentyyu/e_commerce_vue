@@ -1,0 +1,48 @@
+.help-banner{
+  height: 100px;
+  @include media-breakpoint-up(md) {
+    height: 240px;
+  }
+}
+
+.accordion-item{
+  .accordion-header{
+    .accordion-button{
+      padding: 1rem 4px;
+      box-shadow: none;
+      &:not(.collapsed){
+        color: black;
+        background-color: transparent;
+      }
+      &:focus{
+        box-shadow: none;
+      }
+      &::after{
+        width: 12px;
+        height: 14px;
+        font-family: "Font Awesome 5 Free"; 
+        font-weight: 900;
+        font-size: 12px;
+        content: "\f067";
+        background-image: none;
+        transform-origin: 40% 60%;
+      }
+      &:not(.collapsed)::after{
+        width: 12px;
+        height: 14px;
+        font-family: "Font Awesome 5 Free"; 
+        font-weight: 900; 
+        content: "\f068";
+        transform-origin: 43% 55%;
+      }
+    }
+  }
+  .accordion-body{
+    padding: 1rem 1rem 1.5rem 1rem;
+    line-height: 1.5;
+    &:focus{
+      border: none;
+      outline: none;
+    }
+  }
+}

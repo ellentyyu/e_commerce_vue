@@ -1,0 +1,252 @@
+.home-banner{
+    background: #d3d3d3;
+   // background-color: $gray-300;
+    .shade-layer{
+      background:rgba($color: rgb(255, 255, 255), $alpha: 0.1);
+    }
+    .home-slogan{
+        bottom: 140px;
+        left: 30px;
+        right: 0;
+        color: white;
+        line-height: 1.2;
+        font-size: 45px;
+        font-weight: bold;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        @include media-breakpoint-up(ss) {
+          font-size: 60px;
+        }
+        @include media-breakpoint-up(sm) {
+          font-size: 80px;
+          bottom: 180px;
+        }
+        @include media-breakpoint-up(lg) {
+          font-size: 90px;
+          left: auto;
+          right: 160px; //可調
+        }
+        .rotate-text-wrap{
+            position: absolute;
+            overflow:hidden;
+            height: 150px; //原本設定120px 雖然不會遮住字但fadeout的時候會看到div下框 不能設定超過父層的bottom:180px
+            
+            width: 100%;  //須依內容調整 小心爆版
+            @include media-breakpoint-up(lg) {
+              width: 550px;
+            }
+            .rotate-text{
+                width: 100%;
+                position: absolute;
+                top: 50px;
+                opacity: 0;
+                animation: rotateText 16s infinite;
+                &:nth-child(2){
+                    animation-delay: 4s;
+                }
+                &:nth-child(3){
+                    animation-delay: 8s;
+                }
+                &:nth-child(4){
+                    animation-delay: 12s;
+                }
+                //logo顏色 可整塊拿掉
+                &.brand-name{ 
+                    font-family: $font-logo;
+                    color: $primary;
+                    .text-white{
+                        font-family: $font-family-sans-serif;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.three-features{
+  // transform: translateY(30px);
+  // opacity: 0;
+  // transition: all .8s;
+  // &.fade-in{
+  //   transform: translateY(0);
+  //   opacity: 1;
+  // }
+  .features-img{
+    height: 400px;
+    @include media-breakpoint-up(lg) {
+      height: 270px;
+    }
+  }
+  
+  .features-img.main-img{
+    @include media-breakpoint-up(sm) {
+      height: 650px;
+    }
+    @include media-breakpoint-up(md) {
+      height: 400px;
+    }
+    @include media-breakpoint-up(lg) {
+      height: 270px;
+    }
+  }
+  .feature-item{
+    .link-underline-reverse{
+      padding-bottom: 3px;
+    }
+    &:hover{
+      cursor: pointer; //往上放
+      .link-underline-reverse::after{
+        width: 0px;
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+}
+
+.home-products{
+  .fa-angle-double-right{
+    transition: all .5s;
+  }
+  
+  .go-to-shop:hover{
+    .fa-angle-double-right{
+      transform: translateX(8px);
+    }
+  } 
+}
+
+.phy-stores{
+  h2{
+   margin-bottom: 32px;
+  }
+  .phy-stores-item{
+    &:hover{
+      .link-underline::after{
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+  .phy-stores-info{
+    cursor: pointer;
+    .phy-stores-hours{
+      font-size: 12px;
+      padding: 36px 8px;
+      background-color: rgba($color: black, $alpha: 0.75);
+      color: $gray-400;
+      transform: translateX(30px);
+      opacity: 0;
+      transition: all .5s;
+      @include media-breakpoint-up(ss) {
+        font-size: 14px;
+        padding: 40px 20px;
+      }
+      @include media-breakpoint-up(sm) {
+        font-size: 15px;
+        padding: 40px 64px;
+      }
+      @include media-breakpoint-up(md) {
+        font-size: 14px;
+        padding: 40px 20px;
+      }
+      @include media-breakpoint-up(lg) {
+        font-size: 16px;
+        padding: 42px 80px;
+      }
+      &.show{
+        transform: translateX(0px);
+        opacity: 1;
+      }
+      .phy-hours-list{
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        .phy-hours-text{
+          line-height: 1.5;
+        }
+        .fa-envira{
+          margin-right: 9px;
+          font-size: 12px;
+        }
+        a{
+          color: $gray-400;
+          &:hover{
+            color: white;
+          }
+        }
+        .media-link{
+          border-bottom: $gray-400 1.5px solid;
+        }
+      }
+      
+    }
+  }
+  .phy-stores-text{
+    h3{
+      cursor: pointer;
+    }
+    .link-underline{
+      padding-bottom: 1.5px;
+    }
+  }
+}
+
+.news-letter.bg-cover{
+  background-attachment: fixed;
+  .input-subscribe{
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    line-height: 1.5;
+    background: transparent;
+    color: white;
+    text-align: center;
+    border: 1px solid rgba($color: white, $alpha: .9);
+    &:focus-visible{
+      outline: transparent;
+    }
+    &::placeholder{
+      color: rgba($color: white, $alpha: .5);
+    }
+  }
+}
+@keyframes rotateText {
+    0% {
+      top: 20px;  //不需要設定到完全出框100% 一是因為opcity會更快變成0(所以大部分是隱形的時候在移動) 二是因為距離較長會跑更快且軌跡太長 20-50px間可以
+      opacity:0;
+    }
+    // 5% {
+    //   top: 0px;
+    //   opacity:1;
+    // }
+    3%{
+      top : 0;
+      opacity:1;
+    }
+    // 20%{
+    //   opacity:1;
+    // }
+    // 25% {    
+    // opacity:0.1;
+    //   top : 0;
+    // }
+    22%{
+        top : 0;
+        opacity:1;
+      }
+    25% {
+      opacity:0;
+      top: 20px;
+    }
+  }
+
+// @keyframes fadeInUp {
+//   0% {
+//     top: 20px;
+//     opacity:0;
+//   }
+//   10% {
+//     top: 0;
+//     opacity: 1;
+//   }
+// }

@@ -1,0 +1,101 @@
+.login{
+    background-color: #eeeeee;
+    // @include media-breakpoint-up(lg) {
+    //     height: 100vh;
+    //   }
+    .login-img{
+        min-height: 150px;
+        @include media-breakpoint-up(lg) {
+            min-height: 500px;
+          }
+    }
+    .input-login{
+      display: block;
+      width: 100%;
+      padding: 30px 12px 6px 12px;
+      line-height: 1.5;
+      background: transparent;
+      color: #212529;
+      border: 1px solid $gray-400;
+      &:focus-visible{
+        outline: transparent;
+      }
+      &::placeholder{
+        color: rgba($color: white, $alpha: .5);
+      }
+      &:focus~label, &:not(:placeholder-shown)~label{
+        opacity: .6;
+        transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+      }
+    }
+
+    
+    label{
+        height: 100%;
+        top: 0;
+        left: 0;
+        padding: 18px 12px;
+        transition: all .3s;
+        transform-origin: 0 0;
+    }
+    // .btn-custom-light{
+    //     background-color: #fff;
+    //     color: rgba($color: #000000, $alpha: .8);
+    //     border: black solid 1px;
+    //     &:hover{
+    //         background-color: #cccccc;
+    //         color: #fff;
+            
+    //     }
+    // }
+}
+
+.admin-nav{
+    background: rgb(27, 27, 27);
+    .admin-nav-link{
+        color: rgba($color: #ffffff, $alpha: .5);
+        transition: all .3s;
+        &:hover, &.active{
+            color: white;
+        }
+    }
+}
+.header-bar{
+    .admin-page{
+        color: $gray-600;
+    }
+}
+.admin-products{
+    height: calc(100% - 70px);
+    background: $gray-100;
+    padding: 0 20px;
+    .table {
+        & thead tr{
+            background-color: $gray-300;
+        }
+        & > :not(:first-child){
+            border-top: none;
+        }
+    } 
+}
+
+//modals
+
+#delModal{
+    .modal-content{
+        width: 70% !important;
+        @include media-breakpoint-up(lg) {
+            width: 45% !important;
+          }
+    }
+}
+.modal-content{
+    .modal-body{
+        .form-control:focus{
+            // border-color: #7596f5;
+            // box-shadow: 0 0 0 0.25rem rgba($color: #2252ff, $alpha: .25);
+            border-color: #13b591;
+            box-shadow: 0 0 0 0.25rem #1e9f8140;
+        }
+    }
+}
