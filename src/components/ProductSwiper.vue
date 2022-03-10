@@ -10,8 +10,8 @@
     id="products-swiper"
     class="py-3"
   >
-    <swiper-slide class="position-relative" v-for="item in products" :key="item.id">
-      <ProductCard :productItem="item" :loadingItem="status.loadingItem" @view-product="viewProduct" @add-cart="addCart"></ProductCard>
+    <swiper-slide class="position-relative" v-for="item in productsSameCate" :key="item.id">
+      <ProductCard :productItem="item" :loadingItem="status.loadingItem" @add-cart="addCart"></ProductCard>
     </swiper-slide>
   </swiper>
 </template>
@@ -25,10 +25,14 @@
 
   import ProductCard from '@/components/ProductCard.vue'
   export default {
+    props: {
+      currCategory: {
+        default: '單品'
+      }
+    },
     data() {
       return{
         slidesNum: 3,
-        products: [],
         status: {
           loadingItem: "", //對應品項id 該品項轉為disabled並加入讀取效果
         },
@@ -42,7 +46,6 @@
     inject: ['pushMessagesState'],
     created() {
       window.addEventListener("resize", this.handleWidth);
-      this.getProducts();
     },
     methods: {
       handleWidth() {
@@ -56,19 +59,6 @@
           this.slidesNum = 1;
         }
       },
-      getProducts() {
-        const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`;
-        this.isLoading = true;
-        this.$http.get(api).then((res) => {
-          this.isLoading = false;
-          if (res.data.success) {
-            this.products = res.data.products;
-          }
-        });
-      },
-      viewProduct(id) {
-        this.$router.push(`/product/${id}`);
-      },
       addCart(id) {
         const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
         this.status.loadingItem = id;
@@ -81,10 +71,17 @@
           if (res.data.success) {
             this.status.loadingItem = "";
             this.$emit('get-cart');
-            //this.$refs.layout.getCart();
           }
         });
       },
+    },
+    computed: {
+      productsAll() {
+        return this.$store.state.productsAll;
+      },
+      productsSameCate() {
+        return this.productsAll.filter(item => item.category == this.currCategory);
+      }
     },
     setup() {
       return {

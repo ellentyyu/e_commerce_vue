@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-products pt-4 pb-5" style="margin-left:-12px; margin-right:-12px">
+  <div class="admin-products admin-table pt-4 pb-5" style="margin-left:-12px; margin-right:-12px">
     <Loading :active="isLoading"></Loading>
     <div class="d-flex flex-column h-100">
       <div class="text-end mb-3">
@@ -11,20 +11,20 @@
       <table class="table mb-auto">
         <thead>
           <tr>
-            <th width="80">分類</th>
-            <th>產品名稱</th>
-            <th width="80">原價</th>
-            <th width="80">售價</th>
-            <th width="60" >啟用</th>
-            <th width="120">編輯</th>
+            <th width="80" class="d-none d-md-table-cell">分類</th>
+            <th>產品</th>
+            <th class="column-price">原價</th>
+            <th class="column-price">售價</th>
+            <th width="">啟用</th>
+            <th class="column-edit">編輯</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in products" :key="item.id">
-            <td>{{ item.category }}</td>
+            <td class="d-none d-md-table-cell">{{ item.category }}</td>
             <td>{{ item.title }}</td>
-            <td class="text-right">{{ currency(item.origin_price) }}</td>
-            <td class="text-right">{{ currency(item.price) }}</td>
+            <td>{{ currency(item.origin_price) }}</td>
+            <td>{{ currency(item.price) }}</td>
             <td>
               <span class="text-success" v-if="item.is_enabled"><i class="fas fa-check"></i></span>
               <span class="text-muted" v-else><i class="fas fa-times"></i></span>
@@ -38,19 +38,19 @@
           </tr>
         </tbody>
       </table>
-      <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
+      <Pagination class="mt-4" :pages="pagination" @emit-pages="getProducts"></Pagination>
     </div>
     
     <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
-    <DelModal ref="delModal" :product="delProduct" @delete-product="deleteProduct"></DelModal>
+    <DelModal ref="delModal" :delItem="delProduct" @delete-item="deleteProduct"></DelModal>
 
   </div>
 </template>
 <script>
-import ProductModal from '../components/ProductModal.vue'
-import DelModal from '../components/DelModal.vue'
-import Pagination from '../components/Pagination.vue'
-import {currency} from '../methods/filters' // 匯入具名函式
+import ProductModal from '@/components/ProductModal.vue'
+import DelModal from '@/components/DelModal.vue'
+import Pagination from '@/components/Pagination.vue'
+import {currency} from '@/methods/filters' // 匯入具名函式
 
 export default {
   data() {
@@ -109,7 +109,7 @@ export default {
         productComponent.hideModal();
         this.pushMessagesState(res);
         if (res.data.success) {
-          this.getProducts();
+          this.getProducts(this.pagination.current_page);
         }
       });
     },
@@ -124,7 +124,7 @@ export default {
         if(res.data.success){
           this.$refs.delModal.hideModal();
           this.pushMessagesState(res);
-          this.getProducts();
+          this.getProducts(this.pagination.current_page);
         }
       });
     }

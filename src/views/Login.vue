@@ -39,9 +39,9 @@
               <button class="btn btn-custom-primary w-100 mb-1" type="submit">
                 登入
               </button>
-              <button class="btn btn-custom-gray w-100" type="submit">
+              <a href="#" class="btn btn-custom-gray w-100">
                 回首頁
-              </button>
+              </a>
             </div>
           </form>
         </div>
@@ -50,7 +50,7 @@
   </div>
 </template>
 <script>
-import ToastMessages from '../components/ToastMessages.vue'
+import ToastMessages from '@/components/ToastMessages.vue'
 export default {
   data() {
     return {
@@ -68,7 +68,10 @@ export default {
     signIn() {
       const api = `${process.env.VUE_APP_API}/admin/signin`;
       this.$http.post(api, this.user).then((res) => {
-        this.pushMessagesState(res, '登入');
+        let vm = this;
+        setTimeout(function(){
+          vm.pushMessagesState(res, res.data.message);
+          });
         if (res.data.success) {
           const { token, expired } = res.data;
           document.cookie = `hexToken=${token}; expired=${new Date(expired)}`;

@@ -2,7 +2,6 @@
     top: 0px;
     z-index: 9;
     .navbar{
-    //  margin: 0px 7px;
         position: absolute;
         top: 7px;
         left: 7px;
@@ -38,7 +37,6 @@
             }
           }
           .search-input{
-            //position: absolute;
             border-radius: 16px;
             background-color: transparent;
             padding: 4px 28px 4px 36px;
@@ -63,22 +61,47 @@
             right: -1px;
             top: -4px;
           }
+          .search-list{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            box-shadow: 0 .3rem .5rem rgba(0,0,0,.15)!important;
+            .search-list-item:first-child{
+              border-top-left-radius: 3px;
+              border-top-right-radius: 3px;
+            }
+            .search-list-item:last-child{
+              border-bottom-left-radius: 3px;
+              border-bottom-right-radius: 3px;
+            }
+            .search-list-item{
+              cursor: pointer;
+              padding: 8px;
+              background-color: white;
+              color: $gray-600;
+              transition: all .2s;
+              &:hover{
+                background-color: $gray-200;
+              }
+            }
+          }
         }
     }
     .navbar-light .navbar-nav .nav-link{
         color: rgba($color: #000000, $alpha: .85);
+        padding: 12px 16px;
+        display: inline-block;
+        @include media-breakpoint-up(md) {
+          display: block;
+          padding: 8px 16px;
+        }
         .link-underline{
             padding-bottom: 4px;
             &.active::after{
               width: 100%;
             }
         }
-        // &:hover{
-        //     .link-underline::after{
-        //        width: 100%;
-        //        left: 0;
-        //     }
-        // }
     }
     .cart-alert{
       width: 18px;
@@ -113,7 +136,6 @@
         top: 0;
         bottom: 0;
         right: 0;
-       // width: 300px;
         color: white;
         background-color: #353535;
         transform: translateX(100%);
@@ -172,13 +194,13 @@
             .btn-custom-gray{
                 padding: 16px;
             }
-            .btn-custom-transparent{
+            .btn-custom-fade{
                 padding: 10px 16px;
             }
         }
-        .btn-custom-gray, .btn-custom-transparent{
+        .btn-custom-gray, .btn-custom-fade{
           &:focus{
-            box-shadow: none;
+            box-shadow: none !important;
           }
           &.disabled{
             border-color: $gray-400;
@@ -204,7 +226,6 @@
     }
 }
 
-
 .footer{
     background-color:#353535; 
     .footer-link{
@@ -224,4 +245,3 @@
         }
     }
 }
-//color: #ff3822

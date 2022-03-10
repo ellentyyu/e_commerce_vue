@@ -14,5 +14,8 @@ export default {
       pushMessagesState,
     }
   },
+  mounted(){
+    this.$store.dispatch('getProductsAll');
+  },
 }
 </script>

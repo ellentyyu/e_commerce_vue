@@ -1,6 +1,5 @@
 .home-banner{
     background: #d3d3d3;
-   // background-color: $gray-300;
     .shade-layer{
       background:rgba($color: rgb(255, 255, 255), $alpha: 0.1);
     }
@@ -28,8 +27,7 @@
         .rotate-text-wrap{
             position: absolute;
             overflow:hidden;
-            height: 150px; //原本設定120px 雖然不會遮住字但fadeout的時候會看到div下框 不能設定超過父層的bottom:180px
-            
+            height: 150px; //原本設定120px 雖然不會遮住字但fadeout的時候會看到div下框 不能設定超過父層的bottom:180px           
             width: 100%;  //須依內容調整 小心爆版
             @include media-breakpoint-up(lg) {
               width: 550px;
@@ -49,12 +47,12 @@
                 &:nth-child(4){
                     animation-delay: 12s;
                 }
-                //logo顏色 可整塊拿掉
+                //logo橘色 可整塊拿掉變回白色
                 &.brand-name{ 
                     font-family: $font-logo;
                     color: $primary;
                     .text-white{
-                        font-family: $font-family-sans-serif;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                     }
                 }
             }
@@ -63,13 +61,6 @@
 }
 
 .three-features{
-  // transform: translateY(30px);
-  // opacity: 0;
-  // transition: all .8s;
-  // &.fade-in{
-  //   transform: translateY(0);
-  //   opacity: 1;
-  // }
   .features-img{
     height: 400px;
     @include media-breakpoint-up(lg) {
@@ -89,11 +80,11 @@
     }
   }
   .feature-item{
+    cursor: pointer;
     .link-underline-reverse{
       padding-bottom: 3px;
     }
     &:hover{
-      cursor: pointer; //往上放
       .link-underline-reverse::after{
         width: 0px;
         right: 0;
@@ -106,8 +97,7 @@
 .home-products{
   .fa-angle-double-right{
     transition: all .5s;
-  }
-  
+  }  
   .go-to-shop:hover{
     .fa-angle-double-right{
       transform: translateX(8px);
@@ -202,8 +192,9 @@
     color: white;
     text-align: center;
     border: 1px solid rgba($color: white, $alpha: .9);
-    &:focus-visible{
-      outline: transparent;
+    border-radius: 0%;
+    &:focus{
+      box-shadow: none;
     }
     &::placeholder{
       color: rgba($color: white, $alpha: .5);
@@ -212,7 +203,7 @@
 }
 @keyframes rotateText {
     0% {
-      top: 20px;  //不需要設定到完全出框100% 一是因為opcity會更快變成0(所以大部分是隱形的時候在移動) 二是因為距離較長會跑更快且軌跡太長 20-50px間可以
+      top: 20px;  // 不需要設定到完全出框100% 一是因為opcity會更快變成0(所以大部分是隱形的時候在移動) 二是因為距離較長會跑更快且軌跡太長 20-50px間可以
       opacity:0;
     }
     // 5% {
@@ -239,14 +230,3 @@
       top: 20px;
     }
   }
-
-// @keyframes fadeInUp {
-//   0% {
-//     top: 20px;
-//     opacity:0;
-//   }
-//   10% {
-//     top: 0;
-//     opacity: 1;
-//   }
-// }

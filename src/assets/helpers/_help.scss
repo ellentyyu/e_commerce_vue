@@ -8,6 +8,7 @@
 .accordion-item{
   .accordion-header{
     .accordion-button{
+      letter-spacing: .5px;
       padding: 1rem 4px;
       box-shadow: none;
       &:not(.collapsed){
@@ -40,9 +41,28 @@
   .accordion-body{
     padding: 1rem 1rem 1.5rem 1rem;
     line-height: 1.5;
+    letter-spacing: .5px;
     &:focus{
       border: none;
       outline: none;
     }
+    a{
+      display: inline-block;
+      color: $gray-700;
+      font-weight: bold;
+    }
+  }
+}
+
+.email-us{
+  letter-spacing: .5px;
+}
+.email-us-link{
+  display: inline-block;
+  padding-bottom: 4px;
+  font-weight: bold;
+  color: black;
+  &:hover{
+    color: black;
   }
 }

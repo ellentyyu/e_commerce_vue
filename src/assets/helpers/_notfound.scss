@@ -1,0 +1,118 @@
+.nf-bg{
+  background: #f0f0f0;
+}
+.nf-text{
+  text-align: center;
+  color: $gray-700;
+  font-weight: bold;
+}
+.nf-title{
+  font-size: 34px;
+  padding-top: 90px;
+  @include media-breakpoint-up(md) {
+    font-size: 45px;
+  }
+}
+.nf-content{
+  font-size: 16px;
+  padding: 0 16px;
+  @include media-breakpoint-up(md) {
+    font-size: 20px;
+  }
+}
+.not-found{
+  .btn-back-home{
+    padding: 16px 8px;
+    letter-spacing: 1px;
+    text-align: center;
+    border-radius: 0%;
+    background-color: $gray-600;
+    color: white;
+    transition: all .3s;
+    &:hover{
+      background-color: $gray-700;
+    }
+  }
+}
+
+@keyframes wave {
+  0% {opacity: 0; transform: translateY(15px)}
+  50% {opacity: 1; transform: translateY(0)}
+  100% {opacity: 0; transform: translateY(-15px)}
+}
+.loader{
+  transform: scale(.7);
+}
+.loader ul {
+  margin: 0 0 10px 0;
+  padding: 0;
+  list-style: none;
+  width: 60px;
+  text-align: center;
+  animation: wave 2.5s infinite linear;
+  animation-fill-mode: forwards;
+}
+.loader li {
+  display: inline-block;
+  background: #d3d3d3;
+  height: 30px;
+  width: 9px;
+  border-radius: 0 100%;
+  transform: rotate(12deg);
+}
+.cup {
+  background: #395e50;
+  width: 60px;
+  height: 54px;
+  border-radius: 0 0 50% 50%;
+  position: relative;
+}
+.cup:before {
+  content: "";
+  position: absolute;
+  width: 66px;
+  height: 20px;
+  border-radius: 50%;
+  background: inherit;
+  left: -3px;
+  top: -10px;
+}
+.cup:after {
+  content: "";
+  position: absolute;
+  width: 56px;
+  height: 12px;
+  border-radius: 50%;
+  background: #3A2F28;
+  left: 2px;
+  top: -6px;
+}
+.loader span {
+  background: #395e50;
+  width: 13px;
+  height: 20px;
+  position: absolute; 
+  right: -13px;
+  top: 10px;
+  border-radius: 0 50% 50% 0;
+}
+.loader span:before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  background: #f0f0f0;
+  width: 10px;
+  height: 12px;
+  border-radius: 0 50% 50% 0;
+}
+.loader span:after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: -50px;
+  background: #395e50;
+  width: 40px;
+  height: 8px;
+  border-radius: 50%;
+}

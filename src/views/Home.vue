@@ -24,7 +24,7 @@
       </section>
       <section class="container-fluid container-custom py-6 three-features fade-in-up" :class="{'fade-in':featuresFadeIn}" ref="threefeatures">
         <div class="row gx-3 gy-5">
-          <div class="col-12 col-md-4 feature-item">
+          <div class="col-12 col-md-4 feature-item" @click="this.$router.push('/about/#roast');">
             <div class="row g-0 flex-column flex-lg-row">
               <div class="col-lg-6" >
                 <div class="bg-cover features-img main-img" style="background-image:url(https://images.unsplash.com/photo-1553292218-4892c2e7e1ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80)">
@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-md-4 feature-item">
+          <div class="col-12 col-sm-6 col-md-4 feature-item"  @click="this.$router.push('/about/#roast');">
             <div class="row g-0 flex-column flex-lg-row">
               <div class="col-lg-6" >
                 <div class="bg-cover features-img" style="background-image:url(https://images.unsplash.com/photo-1517701604599-bb29b565090c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80); background-size:130%">
@@ -52,7 +52,7 @@
               <div class="col-lg-6 d-flex align-items-center justify-content-lg-center justify-content-start">
                 <div>
                   <h2 class="fs-6 fw-bold mt-3 mt-lg-0 mb-1">職人杯測沖煮</h2>
-                  <p class="mb-3">手沖義式表現俱佳</p>
+                  <p class="mb-3">手沖義式杯杯經典</p>
                   <a href="#/about/#roast" class="fs-s text-black ">
                     <span class="link-underline-reverse">
                       了解更多
@@ -62,7 +62,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-md-4 feature-item">
+          <div class="col-12 col-sm-6 col-md-4 feature-item"  @click="this.$router.push('/about/#brand');">
             <div class="row g-0 flex-column flex-lg-row">
               <div class="col-lg-6" >
                 <div class="bg-cover features-img" style="background-image:url(https://images.unsplash.com/photo-1532444564054-53f6d85adb3c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80)"></div>
@@ -70,7 +70,7 @@
               <div class="col-lg-6 d-flex align-items-center justify-content-lg-center justify-content-start">
                 <div>
                   <h2 class="fs-6 fw-bold mt-3 mt-lg-0 mb-1">咖啡訂閱系統</h2>
-                  <p class="mb-3">新鮮咖啡雙週快送</p>
+                  <p class="mb-3">新鮮咖啡每月快送</p>
                   <a href="#/about/#brand" class="fs-s text-black">
                     <span class="link-underline-reverse">
                       了解更多
@@ -85,11 +85,11 @@
       <section class="container-fluid container-custom py-4 home-products fade-in-up" :class="{'fade-in':productsFadeIn}" ref="productions">
         <div class="mb-3 d-flex justify-content-between align-items-end">
           <h2 class="fs-4 fw-bold">精選商品</h2>
-          <a href="#/shop/products" class="fw-bold text-primary go-to-shop me-2">逛逛商店
+          <a href="#/products" class="fw-bold text-primary go-to-shop me-2">逛逛商店
             <i class="fas fa-angle-double-right fs-s ps-1"></i>
           </a>
         </div>
-        <HomeSwiper @get-cart="this.$refs.layout.getCart();"></HomeSwiper>
+        <ProductSwiper class="home-swiper" @get-cart="this.$refs.layout.getCart();"></ProductSwiper>
       </section>
       <section class="container-fluid container-custom py-6 mb-5 phy-stores fade-in-up" :class="{'fade-in':phyStoresFadeIn}" ref="phystores">
         <h2 class="fs-4 fw-bold">實體商店</h2>
@@ -165,15 +165,15 @@
       <section class="py-8 bg-cover news-letter position-relative" style="background-image:url(https://images.unsplash.com/photo-1502667300144-de6ba1304a27?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);">
         <h2 class="fs-5 mb-4 text-center text-white">訂閱最新咖啡電子報</h2>
         <div class="continer">
-          <form class="row justify-content-center w-75 px-4 mx-auto g-2">
+          <Form v-slot="{ errors }" class="row justify-content-center w-75 px-4 mx-auto g-2">
             <div class="col-12 col-md-8 col-lg-5">
-              <input type="email" id="email" class="input-subscribe mb-1" name="email" placeholder="customer@solljus.com">
-              <span class="text-primary fs-s">驗證驗證</span>
+              <Field type="email" id="subscription" class="input-subscribe form-control" :class="{'is-invalid':errors['訂閱信箱']}" name="訂閱信箱" rules="email" placeholder="customer@solljus.com"></Field>
+              <ErrorMessage name="訂閱信箱" class="invalid-feedback mt-1"></ErrorMessage>
             </div>
             <div class="col-12 col-md-3 col-lg-2">
               <button class="btn btn-custom-primary w-100">送出</button>
             </div>      
-          </form>
+          </Form>
         </div>
       </section>
     </div>
@@ -183,13 +183,13 @@
 
 <script>
 // @ is an alias to /src
-import HomeSwiper from '@/components/HomeSwiper.vue'
+import ProductSwiper from '@/components/ProductSwiper.vue'
 import ScrollTop from '@/components/ScrollTop.vue'
-import ToastMessages from '../components/ToastMessages.vue'
+import ToastMessages from '@/components/ToastMessages.vue'
 export default {
   name: 'Home',
   components: {
-    HomeSwiper,
+    ProductSwiper,
     ScrollTop,
     ToastMessages
   },
@@ -204,11 +204,9 @@ export default {
   },
   created() {
     window.addEventListener("scroll", this.handleScroll);
-    //window.addEventListener("resize", this.handleWidth);
   },
   methods: {
     handleScroll() {
-        //console.log(this.$refs.threefeatures.offsetTop, window.scrollY, window.innerHeight, this.$refs.banner.clientHeight);
       if (this.$refs.threefeatures) {
         if (window.scrollY + window.outerHeight * 0.7 >= this.$refs.threefeatures.offsetTop) {
         this.featuresFadeIn = true;
@@ -221,9 +219,6 @@ export default {
         }
       }
     },
-    // handleWidth() {
-    //   console.log(screen.width);
-    // }
   },
 
 }

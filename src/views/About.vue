@@ -15,7 +15,6 @@
         </div>
       </section>
       <section class="container-fluid about-intro pb-6">
-        <!-- <h2 class="fs-4 fw-bold">Solljus</h2> -->
         <p class="col-12 col-md-8 mx-auto mb-7 about-text">Solljus於2016年誕生於東海岸的一間倉庫中，是一間以山海為鄰的獨立烘豆工作室。solljus為瑞典語的「陽光」，表達對於陽光、自然、咖啡以及北歐極淺烘焙風格的熱愛。希望以細膩的手法與大膽的實驗，表達風土賦予每一種咖啡的獨特個性。</p>
         <div class="row mb-5 mb-md-9">
           <div class="col-12 col-md-6">
@@ -41,15 +40,13 @@
             <div class="about-text-wrap fade-in-left" :class="{'fade-in':brandFadeIn}" ref="brand" id="brand">
               <h2 class="about-title">品牌經營</h2>
               <p class="about-text">
-                持續耕耘技術，Solljus現在除了擴大烘豆工作室規模，也在充滿陽光的東海岸有了品牌咖啡店和立飲吧，並且開始提供訂閱制咖啡服務，專注生活的同時也可以持續享受充實身心的咖啡補給。
+                持續耕耘技術，Solljus現在除了擴大烘豆工作室規模，也在充滿陽光的島嶼南方有了品牌咖啡店和立飲吧，並且開始提供訂閱制咖啡服務，專注生活的同時也可以持續享受充實身心的咖啡補給。
               </p>
-              <!--  省去反覆找尋訂購的麻煩 -->
               <p class="about-text">無論是店內交流，還是線上相遇，Solljus都期待將職人烘焙的細緻風味分享給每個熱愛咖啡的朋友。
               </p>
             </div>
           </div>
         </div>
-
       </section>
     </div>
   </Layout>
@@ -71,7 +68,6 @@ export default {
   },
   created() {
     window.addEventListener("scroll", this.handleScroll);
-    // console.log(this.$route.hash);
   },
   methods: {
     handleScroll() {

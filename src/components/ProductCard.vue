@@ -1,24 +1,21 @@
 <template>
 <div class="h-100 d-flex flex-column">
-  <a href="#" class="product-img mb-3 position-relative" @click.prevent="$emit('view-product', productItem.id)">
+  <a href="#" class="product-img mb-3 position-relative" @click.prevent="viewProduct(productItem.id)">
     <img
-      :src="productItem.imageUrl"
+      :src="productItem.images[0]"
       alt="product"
     />
-    <!-- <a href="#" class="far fa-heart position-absolute fs-5"></a> -->
-    <p class="position-absolute text-white font-logo on-sale" v-if="productItem.price!==productItem.origin_price">On Sale</p>
+    <p class="position-absolute font-logo on-sale" v-if="productItem.price!==productItem.origin_price">On Sale</p>
   </a>
   <div class="product-text mb-auto">
-    <a href="#" class="text-black mb-2" @click.prevent="$emit('view-product', productItem.id)">
+    <a href="#" class="text-black mb-2" @click.prevent="viewProduct(productItem.id)">
       <h3 class="fs-6 fw-bold mb-1">{{ productItem.title }}
-        <span v-if="productContent"> : {{ productContent.process}}&nbsp;</span>
-        <span v-if="productContent"> {{ productContent.roast}}</span>
+        <span v-if="productContent && productItem.unit !== '月' && productItem.category == '單品'"> : {{ productContent.process}}&nbsp;</span>
+        <span v-if="productContent && productItem.unit !== '月' && productItem.category == '單品'"> {{ productContent.roast}}</span>
       </h3>
-      <!-- <p class="fs-6">{{ productItem.description }}</p> -->
     </a>
-    <!-- <div class="prices-wrap"> -->
-      <span class="fs-6 fw-bold fst-italic text-primary me-2" v-if="productItem.price!==productItem.origin_price">NT$ {{ productItem.price }}</span>
-      <span class="fs-s fst-italic" :class="{'text-decoration-line-through':productItem.price!==productItem.origin_price}">NT$ {{ productItem.origin_price }}</span>
+      <span class="fs-6 fw-bold fst-italic text-primary me-2" v-if="productItem.price!==productItem.origin_price">NT$ {{ currency(productItem.price) }}</span>
+      <span class="fs-s fst-italic" :class="{'text-decoration-line-through':productItem.price!==productItem.origin_price}">NT$ {{ currency(productItem.origin_price) }}</span>
    
   </div>
   <div class="text-center mt-2">
@@ -29,13 +26,13 @@
           <div class="bounce2"></div>
           <div class="bounce3"></div>
         </div>
-        <!-- v-if="productItem.id===loadingProduct" -->
       </a>
   </div>
 </div>
 </template>
 
 <script>
+import {currency} from '../methods/filters'
 export default {
   props:{
     productItem: {
@@ -60,13 +57,17 @@ export default {
     this.parseContent();
   },
   methods: {
+    currency,
     parseContent() {
       let product = { ...this.productItem };
       if (product.content) {
         product.content = JSON.parse(`${product.content}`);
       }
       this.productContent = product.content;
-    }
+    },
+    viewProduct(id) {
+      this.$router.push(`/product/${id}`);
+    },
   }
 }
 </script>

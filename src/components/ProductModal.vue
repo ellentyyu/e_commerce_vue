@@ -40,7 +40,11 @@
                 </label>
                 <input type="file" id="customFile" class="form-control" ref="fileInput" @change="uploadFile"/>
               </div>
-              <img class="img-fluid mb-5" :src="tempProduct.imageUrl" alt="product image" v-if="tempProduct.imageUrl" />
+              <template v-if="tempProduct.images">
+                <img class="img-fluid mb-5" :src="tempProduct.images[0]" alt="product image" v-if="tempProduct.images[0] && tempProduct[0] !== ''" />
+              </template>
+
+
               <!-- 延伸技巧，多圖 -->
               <h6 class="mb-3">上傳多張圖片</h6>
               <div v-if="tempProduct.images">
@@ -73,23 +77,6 @@
                   </button>
                 </div>
               </div>
-              <!-- <div class="mt-5">
-                <div class="mb-3 input-group">
-                  <input
-                    type="url"
-                    class="form-control form-control"
-                    placeholder="請輸入連結"
-                  />
-                  <button type="button" class="btn btn-outline-danger">
-                    移除
-                  </button>
-                </div>
-                <div>
-                  <button class="btn btn-outline-success btn-sm d-block w-100">
-                    新增圖片
-                  </button>
-                </div>
-              </div> -->
             </div>
             <div class="col-sm-8">
               <div class="mb-3">
@@ -115,7 +102,7 @@
                   />
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="price" class="form-label">單位</label>
+                  <label for="unit" class="form-label">單位</label>
                   <input
                     type="text"
                     class="form-control"
@@ -221,7 +208,6 @@ export default {
       // 多圖
       if (!this.tempProduct.images) {
         this.tempProduct.images = [];
-        console.log(123);
       }
     }
   },
@@ -236,7 +222,6 @@ export default {
      // console.log(event.target.value);
       //將檔案取出並變成formdata格式
       const uploadedFile = this.$refs.fileInput.files[0];
-    //  console.log(uploadedFile);
       const formData = new FormData;
       //增加表單欄位
       formData.append('file-to-upload', uploadedFile);
@@ -249,6 +234,6 @@ export default {
         }
       });
     }
-  },
+  }
 };
 </script>

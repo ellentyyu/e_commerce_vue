@@ -26,19 +26,28 @@
                 <span class="fs-s text-darkgray">{{product.category}}</span>
               </div>
               <h1 class="fs-4 mb-3">{{product.title}}</h1>
-              <div class="ind-pro-content ls-1 mb-4 mb-md-5">
-                <p class="mb-2"><span class="aste">★</span><span>處理：</span>{{productContent.process}}</p>
-                <p class="mb-2"><span class="aste">★</span><span>焙度：</span>{{productContent.roast}}</p>
-                <p class="mb-2"><span class="aste">★</span><span>風味：</span>{{productContent.flavor}}</p>
-                <p class="mb-2 lh-custom">{{product.description}}</p>
+              <div class="ind-pro-content mb-4 mb-md-5 pe-lg-3">
+                <template v-if="product.category !== '周邊'">
+                  <p class="mb-2" v-if="product.category == '單品'"><span class="aste">★</span><span>處理：</span>{{productContent.process}}</p>
+                  <p class="mb-2"><span class="aste">★</span><span>焙度：</span>{{productContent.roast}}</p>
+                  <p class="mb-2" v-if="product.category == '配方'"><span class="aste">★</span><span>比例：</span>{{productContent.ratio}}</p>
+                  <p class="mb-2"><span class="aste">★</span><span>風味：</span>{{productContent.flavor}}</p>
+                </template>
+                <p class="mb-2 ind-pro-des" style="white-space:pre-wrap">{{product.description}}</p>
+              </div>
+              <div class="mb-4 ind-pro-content">
+                <p>
+                  <i class="fas fa-sun me-1 fs-s text-fade"></i>年末感謝季 - 結帳輸入代碼 solljusonline 即可享有<span class="text-primary">8折</span>優惠
+                </p>
               </div>
               <div class="mb-4">
                 <span class="fs-4 fw-bold me-2" :class="{' text-primary':product.price !== product.origin_price}">NT$ {{product.price}}</span>
                 <span class="fs-6 text-decoration-line-through" v-if="product.price !== product.origin_price">$ {{product.origin_price}}</span>
-                <span> / 磅</span>
+                <span> / {{product.unit}}</span>
               </div>
               <div class="d-md-flex col-md-8">
-                <input class="input-ind-pro me-2 text-center text-md-start" v-model="qty" type="number">
+                <input class="input-ind-pro me-2 text-center text-md-start" v-if="product.unit=='月'" min="1" max="1" v-model="qty" type="number">
+                <input class="input-ind-pro me-2 text-center text-md-start" v-else min="1" v-model="qty" type="number">
                 <button class="btn-ind-pro col-12 col-md-7 mt-2 mt-md-0 position-relative" :class="{'disabled':product.id===status.loadingItem}" @click.prevent="addCart(product.id, qty)">加入購物車
                   <div v-if="product.id===status.loadingItem" class="spinner-custom spinner-ind-pro">
                     <div class="bounce1"></div>
@@ -59,15 +68,15 @@
               <ul>
                 <li class="guide-list-item">
                   <i class="fab fa-envira"></i>
-                  <p class="guide-text">養豆是我們耐心等待風味熟成的過程，行者的所有咖啡豆皆經過仔細測試，請依造包裝上的Brewing date進行開封沖煮，若提前開封，請在研磨後靜置15分鐘以後再進行沖煮。</p>
+                  <p class="guide-text">咖啡豆烘焙後建議經過耐心的養豆過程，等待風味熟成。請依包裝上的烘焙日期，將咖啡豆存放在無陽光直射的室內七至十天，再進行開封沖煮。若提前開封，請在研磨後靜置15分鐘。</p>
                 </li>
                 <li class="guide-list-item">
                   <i class="fab fa-envira"></i>
-                  <p class="guide-text">產品最佳風味期以包裝上標示為準，咖啡豆自製造日起約可存放十二個月。</p>
+                  <p class="guide-text">咖啡豆皆以具單向排氣閥的深色豆袋包裝，以保持最佳風味。開封後每次取用該次沖煮所需量即可，剩餘豆子請勿冷藏，以免受潮。</p>
                 </li>
                 <li class="guide-list-item">
                   <i class="fab fa-envira"></i>
-                  <p class="guide-text">咖啡豆開封後請勿冷藏，以免受潮，並請在三個月內沖煮完畢。</p>
+                  <p class="guide-text">食品類商品最佳賞味期以包裝上標示為準。咖啡豆自製造日起約可存放十二個月，但請盡量在三個月內沖煮完畢，以享用最佳美味。</p>
                 </li>
               </ul>
 
@@ -78,24 +87,22 @@
           </div>
         </div>
       </section>
-      <section class="container-fluid container-custom related-products pb-5">
-        <h2 class="fs-4 mb-4 text-center">更多商品</h2>
-        <HomeSwiper @get-cart="this.$refs.layout.getCart();"></HomeSwiper>
+      <section class="container-fluid container-custom related-products pb-7">
+        <h2 class="fs-4 mb-4 text-center">相關商品</h2>
+        <ProductSwiper :currCategory="product.category" @get-cart="this.$refs.layout.getCart();"></ProductSwiper>
       </section>
     </div>
-
   </Layout>
   <ScrollTop></ScrollTop>
 </template>
 <script>
 import ToastMessages from '../components/ToastMessages.vue'
 import ScrollTop from '@/components/ScrollTop.vue'
-import HomeSwiper from '@/components/HomeSwiper.vue'
+import ProductSwiper from '@/components/ProductSwiper.vue'
 export default {
   data() {
     return {
       isLoading: false,
-      productId: '',
       productContent: {},
       product: {},
       qty: 1,
@@ -108,29 +115,37 @@ export default {
   components: {
     ToastMessages,
     ScrollTop,
-    HomeSwiper
+    ProductSwiper,
   },
   inject: ['pushMessagesState'],
   methods: {
-    getSingleProduct() {
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${this.productId}`;
+    getSingleProduct(id) {
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`;
       this.isLoading = true;
       this.$http.get(api).then((res) => {
         this.isLoading = false;
         if (res.data.success) {
           this.product = res.data.product;
-          this.parseContent();
+          if (this.product.content) {
+            this.parseContent();
+          }
         }
       });
     },
     parseContent() {
       let product = { ...this.product };
-      if (product.content) {
-        product.content = JSON.parse(`${product.content}`);
-      }
+      product.content = JSON.parse(`${product.content}`);
       this.productContent = product.content;
     },
     addCart(id, qty) {
+      if(qty < 1){
+        this.qty = 1;
+        qty = 1;
+      }
+      if(qty > 1 && this.product.unit == '月') {
+        this.qty = 1;
+        qty = 1;
+      }
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`;
       this.status.loadingItem = id;
       const cart = {
@@ -147,17 +162,17 @@ export default {
     },
   },
   computed: {
-    // productContent () {
-    //   let product = { ...this.product };
-    //   if (product.content) {
-    //     product.content = JSON.parse(`${product.content}`);
-    //   }
-    //   return product.content;
-    // }
+    productId() {
+      return this.$route.params.productId;
+    },
+  },
+  watch: {
+    productId(val) {
+      this.getSingleProduct(val);
+    }
   },
   created() {
-    this.productId = this.$route.params.productId;
-    this.getSingleProduct();
+    this.getSingleProduct(this.$route.params.productId);
   },
 };
 </script>

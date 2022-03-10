@@ -26,6 +26,6 @@ export default {
         updatePage(page){
             this.$emit('emit-pages', page)
         }
-    }
+    },
 }
 </script>

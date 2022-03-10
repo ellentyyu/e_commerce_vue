@@ -26,6 +26,14 @@ const routes = [
       {
         path: 'products',
         component: () => import('../views/ProductsAdmin.vue')
+      },
+      {
+        path: 'coupons',
+        component: () => import('../views/CouponsAdmin.vue')
+      },
+      {
+        path: 'orders',
+        component: () => import('../views/OrdersAdmin.vue')
       }
     ]
   },
@@ -40,6 +48,18 @@ const routes = [
   {
     path: '/help',
     component: () => import('../views/Help.vue')
+  },
+  {
+    path: '/order',
+    component: () => import('../views/Order.vue')
+  },
+  {
+    path: '/checkout/:orderId',
+    component: () => import('../views/Checkout.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('../views/NotFound.vue')
   }
   // {
   //   path: '/shop',
