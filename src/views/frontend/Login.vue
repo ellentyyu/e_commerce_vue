@@ -3,7 +3,7 @@
   <div class="login">
     <div class="container container-custom py-6"> 
       <div class="row justify-content-center">
-        <div class="col-md-4 col-lg-3 bg-cover login-img" style="background-image:url(https://images.unsplash.com/photo-1519831802596-6aadd85ff671?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80)"></div>
+        <div class="col-md-4 col-lg-3 bg-cover login-img" :style="`background-image: url(${require('@/assets/images/login_banner.jpg')})`"></div>
         <div class="col-md-5 col-lg-4 bg-white">
           <form class="py-4 px-3 d-flex flex-column h-100" @submit.prevent="signIn">
             <h1 class="fs-4 mb-3 fw-bold text-center">後台登入</h1>
