@@ -1,0 +1,215 @@
+.bg-cover{
+    background-size: cover;
+    background-position: center center;
+  }
+.text-hide{
+    height: 0px;
+    text-indent: 101%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+// bs的寫法 用在圖片的文字上
+.text-hide-img{
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.ls-1{
+  letter-spacing: 1px;
+}
+.container-custom{
+  padding: 0px 30px;
+  @include media-breakpoint-up(sm) {
+    padding: 0px 60px;
+  }
+}
+.font-logo{
+  font-family: 'Lily Script One', cursive;
+}
+
+// 連結底線效果
+.link-underline::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: black;
+  transition: all 0.5s;
+}
+.link-underline{
+  position: relative;
+  &:hover{
+    &::after{
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+.link-underline-reverse::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  height: 1px;
+  background-color: black;
+  transition: all 0.5s;
+}
+.link-underline-reverse{
+  position: relative;
+  &:hover{
+    &::after{
+      width: 0px;
+      right: 0;
+      left: auto;
+    }
+  }
+}
+// fade-in效果
+.fade-in-up{
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all .8s;
+  &.fade-in{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.fade-in-left{
+  transform: translateX(10px);
+  opacity: 0;
+  transition: all .8s;
+  &.fade-in{
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.shade-layer{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// 常用按鈕
+.btn-custom-primary{
+  border-radius: 0;
+  background-color: $primary;
+  color: rgba($color: white, $alpha: .85);
+  &:hover{
+    color: white;
+    background-color: #ff5643;
+  }
+}
+.btn-custom-primary-rounded{
+  background-color: $primary;
+  color: rgba($color: white, $alpha: .85);
+  &:hover{
+    color: white;
+    background-color: #ff5643;
+  }
+}
+.btn-custom-gray{
+  border-radius: 0;
+  background-color: $gray-100;
+  color: rgba($color: black, $alpha: .8);
+  border: rgba($color: black, $alpha: .3) solid 1px;
+  &:hover{
+    color: white;
+    background-color: $gray-600;
+  }
+}
+.btn-custom-fade{
+  border-radius: 0;
+  background-color: transparent;
+  color: $fade;
+  border: $fade solid 1px;
+  &:hover{
+      background-color: $fade; 
+      color: white;       
+  }
+}
+
+// 頁碼
+.pagination{
+  .page-item{
+    border-radius: 50%;
+    .page-link{
+      border-radius: 50%;
+      border: none;
+      background-color: transparent;
+      &:focus{
+        box-shadow: none;
+      }
+    }
+    &.active .page-link{
+      background-color: $primary;
+    }
+    &.disabled .page-link{
+      pointer-events: none;
+      color: $gray-500;
+    }
+  }
+}
+
+// 吐司
+.toast.toast-success{
+  background-color: #e1ece8 !important;
+}
+.toast.toast-danger{
+  background-color: #f3cfcf !important;
+}
+.toast-header .btn-close:focus{
+  box-shadow: none;
+}
+  
+// scrolltop icon
+.scroll-top{
+  bottom: 8%;
+  right: 5%;
+  .scroll-top-arrow{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    background-color:rgba($color: #bdbdbd, $alpha: .3);
+    transition: all 0.3s;
+    &:hover{
+      background-color: rgba($color: #dadada, $alpha: .8);
+    }
+  }
+}
+
+// swiper
+.home-products, .related-products{
+  #products-swiper{
+    .swiper-slide{
+      height: auto !important;
+    }
+    .swiper-button-prev, .swiper-rtl .swiper-button-next, .swiper-button-next{
+      background-color: rgba($color: rgb(255, 255, 255), $alpha: 0.5);
+      border-radius: 50%;
+      width: 35px !important;
+      height: 35px !important;
+      top: 41%;
+      &::after{
+        color: $primary;
+        font-size: 16px !important;
+        font-weight: bold;
+      }
+    }
+    .swiper-button-prev::after{
+      padding-right: 2px;
+    }
+    .swiper-rtl .swiper-button-next::after, .swiper-button-next::after{
+      padding-left: 2px;
+    }  
+  }
+}

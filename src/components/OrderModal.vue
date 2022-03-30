@@ -25,7 +25,7 @@
             <div class="col-12">
               <div class="mb-3">
                 <p class="mb-3">訂單號碼</p>
-                <p>{{tempOrder.id}}</p>
+                <p>{{ tempOrder.id }}</p>
               </div>
               <div class="row gx-2">
                 <div class="mb-3 col-md-6">
@@ -111,7 +111,7 @@ export default {
   props: {
     order: {
       type: Object,
-      default() { return {};}
+      default() { return {}; }
     }
   },
   watch: {

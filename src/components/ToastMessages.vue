@@ -10,7 +10,6 @@
 
 <script>
 import Toast from '@/components/Toast.vue';
-import emitter from '@/methods/emitter';
 export default {
   components: { Toast },
   data() {
@@ -18,13 +17,16 @@ export default {
       messages: [],
     };
   },
-  mounted() {
-    //外部(其他元件)會觸發push-message事件 並將message傳入這裡
-    //訊息被推入messages陣列中就會觸發單一toast生命週期
-      emitter.on('push-message', (message)=>{
-        const {style = 'success', title, content} = message;
-        this.messages.push({style, title, content});
-    })
+  computed: {
+    message() {
+      return this.$store.state.message;
+    }
   },
+  watch: {
+    message(val) {
+      const { style = 'success', title, content } = val;
+      this.messages.push({ style, title, content });
+    }
+  }
 };
 </script>

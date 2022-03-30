@@ -1,0 +1,164 @@
+.login{
+  background-color: #eeeeee;
+  .login-img{
+      min-height: 150px;
+      @include media-breakpoint-up(lg) {
+          min-height: 500px;
+        }
+  }
+  .input-login{
+    display: block;
+    width: 100%;
+    padding: 30px 12px 6px 12px;
+    line-height: 1.5;
+    background: transparent;
+    color: #212529;
+    border: 1px solid $gray-400;
+    &:focus-visible{
+      outline: transparent;
+    }
+    &::placeholder{
+      color: rgba($color: white, $alpha: .5);
+    }
+    &:focus~label, &:not(:placeholder-shown)~label{
+      opacity: .6;
+      transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+    }
+  }
+  label{
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 20px 12px;
+      transition: all .3s;
+      transform-origin: 0 0;
+  }
+}
+
+.admin-nav{
+  background: rgb(27, 27, 27);
+  .admin-nav-link{
+      color: rgba($color: #ffffff, $alpha: .5);
+      transition: all .3s;
+      &.active{
+          color: white;
+      }
+      @include media-breakpoint-up(md) {
+        &:hover{
+          color: white;
+        }
+    }
+  }
+}
+.header-bar{
+  .admin-page{
+      color: $gray-600;
+  }
+}
+// 商品、優惠券、訂單共用樣式
+.admin-table{
+  height: calc(100% - 70px);
+  background: $gray-100;
+  padding: 0 20px;
+  .table {
+      & thead tr{
+          background-color: $gray-300;
+      }
+      & > :not(:first-child){
+          border-top: none;
+      }
+      .btn-group{
+        display: block !important;
+        @include media-breakpoint-up(ss) {
+          display: inline-flex;
+        }
+      }
+      .btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-group:not(:last-child) > .btn {
+        margin-bottom: 4px;
+        border-top-right-radius: 3.2px;
+        border-bottom-right-radius: 3.2px;
+        @include media-breakpoint-up(ss) {
+          margin-bottom: 0px;
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px
+        }
+      }
+      .btn-group > .btn:nth-child(n + 3), .btn-group > :not(.btn-check) + .btn, .btn-group > .btn-group:not(:first-child) > .btn {
+        border-top-left-radius: 3.2px;
+        border-bottom-left-radius: 3.2px;
+        @include media-breakpoint-up(ss) {
+          border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        }
+      }
+  } 
+}
+// 商品
+.admin-products{
+  .table {
+    .column-price{
+      @include media-breakpoint-up(ss) {
+        width: 80px;
+      }
+    }
+    .column-edit{
+      @include media-breakpoint-up(ss) {
+        width: 120px;
+      }
+    }
+  } 
+}
+// 優惠券
+.admin-coupons{
+  .column-edit{
+    width: 70px;
+    @include media-breakpoint-up(ss) {
+      width: 120px;
+    }
+  }
+}
+// 訂單
+.admin-orders{
+  .column-id{
+    width: 80px;
+    @include media-breakpoint-up(ss) {
+      width: auto;
+    }
+  }
+  .column-date{
+    width: 80px;
+    @include media-breakpoint-up(ss) {
+      width: auto;
+    }
+  }
+  .column-name{
+    width: 60px;
+    @include media-breakpoint-up(ss) {
+      width: auto;
+    }
+  }
+  .column-edit{
+    width: 70px;
+    @include media-breakpoint-up(ss) {
+      width: 120px;
+    }
+  }
+}
+
+//modals
+#delModal{
+  .modal-content{
+      width: 70% !important;
+      @include media-breakpoint-up(lg) {
+          width: 45% !important;
+      }
+  }
+}
+.modal-content{
+  .modal-body{
+      .form-control:focus{
+          border-color: #13b591;
+          box-shadow: 0 0 0 0.25rem #1e9f8140;
+      }
+  }
+}

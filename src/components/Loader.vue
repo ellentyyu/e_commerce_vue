@@ -41,7 +41,7 @@
   display: inline-block;
   font-size: 50px;
   color: #443030da;
-  font-family: $font-logo;
+  font-family: 'Lily Script One', cursive;
   animation: loading 2s infinite;
 
   &:nth-child(2){
@@ -96,7 +96,7 @@
     animation-delay: .9s
     }
 
-  @keyframes loading  {
+  @keyframes loading {
     0% {
       transform: translateY(0);
       filter: blur(0);

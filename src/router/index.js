@@ -1,80 +1,62 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import('@/views/frontend/Home.vue')
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: () => import('@/views/frontend/About.vue')
   },
   {
     path: '/login',
-    component: () => import('../views/Login.vue')
+    component: () => import('@/views/frontend/Login.vue')
   },
   {
     path: '/admin',
-    component: () => import('../views/Admin.vue'),
+    component: () => import('@/views/backend/Admin.vue'),
     children: [
       {
         path: 'products',
-        component: () => import('../views/ProductsAdmin.vue')
+        component: () => import('@/views/backend/ProductsAdmin.vue')
       },
       {
         path: 'coupons',
-        component: () => import('../views/CouponsAdmin.vue')
+        component: () => import('@/views/backend/CouponsAdmin.vue')
       },
       {
         path: 'orders',
-        component: () => import('../views/OrdersAdmin.vue')
+        component: () => import('@/views/backend/OrdersAdmin.vue')
       }
     ]
   },
   {
     path: '/products',
-    component: () => import('../views/ProductsShop.vue')
+    component: () => import('@/views/frontend/ProductsShop.vue')
   },
   {
     path: '/product/:productId',
-    component: () => import('../views/ProductItem.vue')
+    component: () => import('@/views/frontend/ProductItem.vue')
   },
   {
     path: '/help',
-    component: () => import('../views/Help.vue')
+    component: () => import('@/views/frontend/Help.vue')
   },
   {
     path: '/order',
-    component: () => import('../views/Order.vue')
+    component: () => import('@/views/frontend/Order.vue')
   },
   {
     path: '/checkout/:orderId',
-    component: () => import('../views/Checkout.vue')
+    component: () => import('@/views/frontend/Checkout.vue')
   },
   {
     path: '/:pathMatch(.*)*',
-    component: () => import('../views/NotFound.vue')
+    component: () => import('@/views/frontend/NotFound.vue')
   }
-  // {
-  //   path: '/shop',
-  //   component: () => import('../views/Shop.vue'),
-  //   children: [
-  //     {
-  //       path: 'products',
-  //       component: () => import('../views/ProductsShop.vue')
-  //     },
-  //     {
-  //       path: 'product/:productId',
-  //       component: () => import('../views/ProductItem.vue')
-  //     }
-  //   ]
-  // }
 ]
 
 const router = createRouter({
@@ -86,7 +68,7 @@ const router = createRouter({
         el: document.getElementById(to.hash.replace('#', '')),
         top: 100,
         behavior: 'smooth'
-      };
+      }
     }
     // always scroll to top
     return { top: 0 }

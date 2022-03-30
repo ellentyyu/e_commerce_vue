@@ -1,0 +1,210 @@
+.home-banner{
+  background: #d3d3d3;
+  .shade-layer{
+    background:rgba($color: rgb(255, 255, 255), $alpha: 0.2);
+  }
+  .home-promotion-wrap{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include media-breakpoint-up(md) {
+      justify-content: end;
+      align-items: flex-end;
+      margin-right: 50px;
+      margin-bottom: 50px;
+    }
+    @include media-breakpoint-up(lg) {
+      align-items: center;
+      margin-right: 0px;
+      margin-bottom: 0;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-right: 30px;
+    }
+    .home-promotion{
+      background-color: rgba($color: white, $alpha: .85);
+      padding: 24px;
+      color: $darkgray;
+      letter-spacing: .5px;
+      transform: scale(.9);
+      &:hover{
+        .link-underline-reverse::after{
+          width: 0px;
+          right: 0;
+          left: auto;
+        }
+      }
+      @include media-breakpoint-up(ss) {
+        transform: scale(1);
+        padding: 28px;
+      }
+      @include media-breakpoint-up(lg) {
+        background-color: transparent;
+        transform: scale(1);
+        padding: 24px;
+      }
+      .link-underline{
+        &::after{
+          z-index: -2;
+          width: 100%;
+          bottom: 5px;
+          height: 8px;
+          background-color: rgba($color: $primary, $alpha: 0.55);
+        }
+      }
+      .shop-link{
+        display: inline-block;
+        font-weight: bold;
+        padding: 16px 0 3px 0;
+      }
+    }
+  }
+}
+
+.three-features{
+  .features-img{
+    height: 400px;
+    @include media-breakpoint-up(lg) {
+      height: 270px;
+    }
+  }
+  
+  .features-img.main-img{
+    @include media-breakpoint-up(sm) {
+      height: 650px;
+    }
+    @include media-breakpoint-up(md) {
+      height: 400px;
+    }
+    @include media-breakpoint-up(lg) {
+      height: 270px;
+    }
+  }
+  .feature-item{
+    cursor: pointer;
+    .link-underline-reverse{
+      padding-bottom: 3px;
+    }
+    &:hover{
+      .link-underline-reverse::after{
+        width: 0px;
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+}
+
+.home-products{
+  .fa-angle-double-right{
+    transition: all .5s;
+  }  
+  .go-to-shop:hover{
+    .fa-angle-double-right{
+      transform: translateX(8px);
+    }
+  } 
+}
+
+.phy-stores{
+  h2{
+   margin-bottom: 32px;
+  }
+  .phy-stores-item{
+    &:hover{
+      .link-underline::after{
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+  .phy-stores-info{
+    cursor: pointer;
+    .phy-stores-hours{
+      font-size: 12px;
+      padding: 36px 8px;
+      background-color: rgba($color: black, $alpha: 0.75);
+      color: $gray-400;
+      transform: translateX(30px);
+      opacity: 0;
+      transition: all .5s;
+      @include media-breakpoint-up(ss) {
+        font-size: 14px;
+        padding: 40px 20px;
+      }
+      @include media-breakpoint-up(sm) {
+        font-size: 15px;
+        padding: 40px 64px;
+      }
+      @include media-breakpoint-up(md) {
+        font-size: 14px;
+        padding: 40px 20px;
+      }
+      @include media-breakpoint-up(lg) {
+        font-size: 16px;
+        padding: 42px 80px;
+      }
+      &.show{
+        transform: translateX(0px);
+        opacity: 1;
+      }
+      .phy-hours-list{
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        .phy-hours-text{
+          line-height: 1.5;
+        }
+        .fa-envira{
+          margin-right: 9px;
+          font-size: 12px;
+        }
+        a{
+          color: $gray-400;
+          &:hover{
+            color: white;
+          }
+        }
+        .media-link{
+          border-bottom: $gray-400 1.5px solid;
+        }
+      }
+      
+    }
+  }
+  .phy-stores-text{
+    h3{
+      cursor: pointer;
+    }
+    .link-underline{
+      padding-bottom: 1.5px;
+    }
+  }
+}
+
+.news-letter.bg-cover{
+  background-attachment: fixed;
+  .input-subscribe{
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    line-height: 1.5;
+    background: transparent;
+    color: white;
+    text-align: center;
+    border: 1px solid rgba($color: white, $alpha: .9);
+    border-radius: 0%;
+    &:focus{
+      box-shadow: none;
+    }
+    &::placeholder{
+      color: rgba($color: white, $alpha: .5);
+    }
+  }
+}
+

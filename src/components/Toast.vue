@@ -23,6 +23,6 @@ export default {
       delay: 3000,
     });
     toast.show();
-  },
+  }
 };
 </script>

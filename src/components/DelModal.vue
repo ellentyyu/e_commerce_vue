@@ -11,8 +11,8 @@
       <div class="modal-content border-0 mx-auto">
         <div class="modal-header bg-danger text-white">
           <h5 class="modal-title" id="delModalLabel">
-            <span v-if="delItem.title">刪除 {{delItem.title}}</span>
-            <span v-else>刪除 {{delItem.id}}</span>
+            <span v-if="delItem.title">刪除 {{ delItem.title }}</span>
+            <span v-else>刪除 {{ delItem.id }}</span>
           </h5>
           <button
             type="button"
@@ -22,7 +22,7 @@
           ></button>
         </div>
         <div class="modal-body">
-        <p>是否刪除 <span class="text-danger fw-bold" v-if="delItem.title">{{delItem.title}}</span>？<br>刪除後將無法恢復。</p>
+        <p>是否刪除 <span class="text-danger fw-bold" v-if="delItem.title">{{ delItem.title }}</span>？<br>刪除後將無法恢復。</p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">取消</button>

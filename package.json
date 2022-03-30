@@ -55,11 +55,7 @@
     },
     "plugins": [
       "vuefix"
-    ],
-    "rules": {
-      "vue/no-multiple-template-root": "off",
-      "semi": 0
-    }
+    ]
   },
   "browserslist": [
     "> 1%",

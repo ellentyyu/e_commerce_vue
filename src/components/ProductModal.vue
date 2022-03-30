@@ -43,9 +43,7 @@
               <template v-if="tempProduct.images">
                 <img class="img-fluid mb-5" :src="tempProduct.images[0]" alt="product image" v-if="tempProduct.images[0] && tempProduct[0] !== ''" />
               </template>
-
-
-              <!-- 延伸技巧，多圖 -->
+              <!-- 多圖 -->
               <h6 class="mb-3">上傳多張圖片</h6>
               <div v-if="tempProduct.images">
                 <div v-for="(image, key) in tempProduct.images" class="mb-3 input-group" :key="key">
@@ -70,6 +68,7 @@
                   "
                 >
                   <button
+                    type="button"
                     class="btn btn-custom-primary-rounded d-block w-100"
                     @click="tempProduct.images.push('')"
                   >
@@ -195,13 +194,11 @@ import modalMixin from "@/mixins/modalMixin";
 export default {
   mixins: [modalMixin],
   props: {
-    //接收外層傳入的tempproduct
     product: {
       type: Object,
       default() { return {};}
     }
   },
-  //每次傳入新的資料就觸發 將外層資料存成local的tempProduct
   watch: {
     product() {
       this.tempProduct = this.product;
@@ -218,8 +215,7 @@ export default {
     };
   },
   methods: {
-    uploadFile(){
-     // console.log(event.target.value);
+    uploadFile() {
       //將檔案取出並變成formdata格式
       const uploadedFile = this.$refs.fileInput.files[0];
       const formData = new FormData;
@@ -232,6 +228,9 @@ export default {
         if (res.data.success) {
           this.tempProduct.imageUrl = res.data.imageUrl;
         }
+      })
+      .catch((e) => {
+        console.error(e);
       });
     }
   }

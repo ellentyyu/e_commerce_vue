@@ -117,6 +117,6 @@ export default {
       modal: {},
       tempCoupon: {}
     };
-  },
+  }
 };
 </script>
